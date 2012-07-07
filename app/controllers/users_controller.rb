@@ -12,6 +12,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @lat_lng = [37.5692, 127.0035]
+    @places = @user.places
+    if params[:search] 
+      @search_places ||= Place.foursquare_venues(@lat_lng[0], @lat_lng[1], params[:search])
+    else
+      @search_places = Place.all
+    end
   end
 
   def create

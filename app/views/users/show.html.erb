@@ -1,4 +1,9 @@
 <% provide(:title, @user.name) %>
+<h1>Mock up for consumer behavior</h1>
+
+<div class="row">
+    <%= render "search" %>
+</div>
 <div class="row">
   <aside class="span4">
     <section>
@@ -8,5 +13,24 @@
     </h1>     
     </section>
   </aside>
+  <div class="span8">
+    <% if @places.any? %>
+      <h3>Places (<%= @places.count %>)</h3>
+      <ol class="thumbnails">
+        <%= render @places %>
+      </ol>
+    <% end %>
+  </div>
 </div>
+<div class="row">
+  <div class="span12">
+    <% if @search_places.any? %>
+      <h4>Near by places(<%= @search_places.count %>)</h4>
+      <ol class="thumbnails">
+        <%= render @search_places %>
+      </ol>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Register Place', new_place_path %>
 

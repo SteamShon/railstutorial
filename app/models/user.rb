@@ -11,9 +11,10 @@
 
 class User < ActiveRecord::Base
   has_many :reviews
-  has_many :places, :through => :reviews
+  has_many :places, :through => :reviews, :uniq => true
   accepts_nested_attributes_for :reviews, :reject_if => lambda { |a| a[:content].blank? }
-  
+  #accepts_nested_attributes_for :places
+
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
   before_save { self.email = self.email.downcase }

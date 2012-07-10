@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <h1>Mock up for consumer behavior</h1>
-
+<h2><%= @lat_lng %></h2>
 <div class="row">
     <%= render "search" %>
 </div>
@@ -9,8 +9,8 @@
     <section>
     <h1>
       <%= gravatar_for @user %>
-      <%= @user.name %>
-    </h1>     
+      <%= @user.name %> (<%= @like_count %>) likes
+    </h1> 
     </section>
   </aside>
   <div class="span8">
@@ -25,10 +25,11 @@
 <div class="row">
   <div class="span12">
     <% if @search_places.any? %>
-      <h4>Near by places(<%= @search_places.count %>)</h4>
+      <h4><%= params[:search] ? "Searched places(" : "Near by places(" %><%= @search_places.count %>)</h4>
       <ol class="thumbnails">
         <%= render @search_places %>
       </ol>
+      <%= will_paginate @search_places, param_name: "search_page" %>
     <% end %>
   </div>
 </div>

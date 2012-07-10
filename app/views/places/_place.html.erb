@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="span6">
+    <div class="row">
+      <li class="span3">
+        <div class="thumnail">
+          <p><%= link_to place.name, places_path %></p>
+           <% review = place.reviews[-1] %>
+           <% if review %>
+              <%= image_tag review.photo.url(:thumb) %>
+           <% else %>
+              <img src="http://placehold.it/160x120" alt="">
+           <% end %>
+        </div>
+      </li>
+      <li class="span3">
+        <%= link_to 'Post', new_review_path(place_id: place) %>
+      </li>
+      <li class="span3">
+        <%= link_to 'Read Posts', reviews_path(place: place) %>
+      </li>
+    </div>
+  </div>
+</div>

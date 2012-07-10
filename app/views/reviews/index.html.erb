@@ -1,0 +1,9 @@
+<% provide(:title, 'All posts') %>
+<h1>All posts</h1>
+<% if @reviews.any? %>
+  <%= will_paginate %>
+  <ul class="thumbnails">
+    <%= render @reviews %>
+  </ul>
+  <%= will_paginate %>
+<% end %>

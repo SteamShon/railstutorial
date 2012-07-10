@@ -1,0 +1,22 @@
+<% provide(:title, "Posting diary") %>
+<h1>Post Diary</h1>
+<p><%= @place %></p>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@review) do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :image %>
+      <%= f.text_field :image %>
+
+      <%= f.label :rate %>
+      <%= f.text_field :rate %>
+      
+      <%= f.file_field :photo %>
+
+      <%= f.submit "Posting", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

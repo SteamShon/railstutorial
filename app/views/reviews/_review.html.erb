@@ -1,0 +1,10 @@
+<div class="row">
+  <li class="span3">
+    <div class="thumbnail">
+      <%= image_tag review.photo.url(:thumb) %>
+      <p><%= review.title %></p>
+      <p><%= link_to 'Like', review, method: :get, remote: true %></p>
+      <p id="<%= "review_" + review.id.to_s %>"><%= review.votes.size %></p>
+    </div>
+  </li>
+</div>

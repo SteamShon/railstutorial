@@ -1,8 +1,8 @@
 Railstutorial::Application.routes.draw do
-  resources :reviews, only: [ :new, :create, :index]
+  resources :reviews, only: [ :new, :create, :index, :show]
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
-  resources :places, only: [ :new, :create, :index]
+  resources :places, only: [ :new, :create, :index, :show]
 
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'

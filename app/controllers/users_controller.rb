@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @like_count = 0
     @user.reviews.each{|r| @like_count += r.votes.size}
     if params[:search] 
-      @search_places ||= Place.foursquare_venues(@lat_lng[0], @lat_lng[1], 
+      @search_places = Place.foursquare_venues(@lat_lng[0], @lat_lng[1], 
       params[:search]).paginate(page: params[:search_page], per_page: 10)
     else
       @search_places = Place.paginate(page: params[:search_page], per_page: 10)

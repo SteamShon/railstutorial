@@ -1,9 +1,25 @@
 <% provide(:title, 'All posts') %>
 <h1>All posts</h1>
+<% content_for :head do %>
+<script type="text/javascript"charset="UTF-8">
+  $(function() {
+    $('#mybook').booklet();
+  });
+</script>
+<% end %>
+
 <% if @reviews.any? %>
-  <%= will_paginate %>
-  <ul class="thumbnails">
-    <%= render @reviews %>
-  </ul>
-  <%= will_paginate %>
+  <div id="mybook">
+    <% @reviews.each do |review| %>
+      <div class="row">
+        <li class="span3">
+            <%= image_tag review.photo.url(:thumb) %>
+            <p><%= review.title %></p>
+            <p><%= link_to 'Like', review, method: :get, remote: true %></p>
+            <p id="<%= "review_" + review.id.to_s %>"><%= review.votes.size %></p>
+        </li>
+      </div>
+    <% end %>
+  </div> 
+  <%= will_paginate @reviews %>
 <% end %>

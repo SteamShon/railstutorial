@@ -5,17 +5,17 @@
     <%= render "search" %>
 </div>
 <div class="row">
-  <aside class="span4">
+  <!--aside class="span4">
     <section>
     <h1>
       <%= gravatar_for @user %>
       <%= @user.name %> (<%= @like_count %>) likes
     </h1> 
     </section>
-  </aside>
-  <div class="span8">
+  </aside-->
+  <div class="span12">
   <% if @places.any? %>
-    <h3>My Places (<%= @places.count %>)</h3>
+    <h3 align="center">My Places (<%= @places.count %>)</h3>
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner" align="center">
         <div class="active item"></div>
@@ -25,13 +25,11 @@
                 <p><%= link_to place.name, places_path %></p>
                 <% review = place.reviews[-1] %>
                  <% if review %>
-                    <%= image_tag review.photo.url(:thumb) %>
+                    <%= link_to image_tag(review.photo.url(:thumb)), reviews_path(place: place) %>
                  <% else %>
                     <img src="http://placehold.it/160x120" alt="">
                  <% end %>
-              <%= link_to 'Post', new_review_path(place_id: place) %>
-              
-              <%= link_to 'Read Posts', reviews_path(place: place) %>
+                <p><%= link_to 'Post', new_review_path(place_id: place) %></p>
               </div>
           </div>
         <% end %>

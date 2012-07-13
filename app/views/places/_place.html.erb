@@ -4,7 +4,7 @@
       <li class="span3">
         <div class="thumnail">
           <p><%= link_to place.name, places_path %></p>
-           <% review = place.reviews[-1] %>
+          <% review = place.reviews[-1] %>
            <% if review %>
               <%= image_tag review.photo.url(:thumb) %>
            <% else %>

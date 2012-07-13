@@ -24,8 +24,10 @@ class Place < ActiveRecord::Base
     ret = {}
     json["results"].each do |r|
       cur_name = r["name"].downcase
+      cur_id = "foursquare_#{r["_domain_id"]}"
       if Place.where("name = ?", r["name"].downcase).size == 0
-        ret[cur_name] = Place.create({ name: r["name"].downcase, latitude: r["coordinates"][1], longitude: r["coordinates"][0] })
+        ret[cur_name] = Place.create({ name: r["name"].downcase, 
+        latitude: r["coordinates"][1], longitude: r["coordinates"][0] })
       else
         ret[cur_name] = Place.where("name = ?", r["name"].downcase).first
       end

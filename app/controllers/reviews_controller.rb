@@ -32,4 +32,7 @@ class ReviewsController < ApplicationController
       format.html
     end
   end
+
+  def toggle_rate
+  end
 end

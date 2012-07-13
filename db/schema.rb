@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20120710074016) do
 
   create_table "reviews", :force => true do |t|
     t.string   "title"
-    t.string   "note"
     t.integer  "rate"
     t.integer  "user_id"
     t.integer  "place_id"
+    t.string   "note"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"

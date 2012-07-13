@@ -1,22 +1,26 @@
+<% content_for :scripts do %>
+<script type="text/javascript"charset="UTF-8">
+  $(function() {
+      $('.nav-tabs').button();
+  });
+</script>
+<% end %>
 <% provide(:title, "Posting diary") %>
 <h1>Post Diary</h1>
+<%= params[:rate] %>
 <div class="row">
   <div class="span6 offset3">
+    <div class="btn-group" data-toggle="buttons-radio">
+      <button class="btn btn-primary" id="thumbs-up" data-toggle="button"><i class="icon-arrow-up icon-white"></i></button>
+      <button class="btn btn-primary" id="thumbs-down" data-toggle="button"><i class="icon-arrow-down icon-white"></i></button>
+    </div>
+    
     <%= form_for @review, :html => { :multipart => true } do |f| %>
       <%= f.hidden_field :user_id, :value => @current_user.id %>
       <%= f.hidden_field :place_id, :value => @place_id %>
-
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      
       <%= f.label :note %>
       <%= f.text_area :note %>
-
-      <%= f.label :rate %>
-      <%= f.text_field :rate %>
-      
       <%= f.file_field :photo %>
-
       <%= f.submit "Posting", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

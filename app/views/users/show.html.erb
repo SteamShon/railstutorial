@@ -1,15 +1,11 @@
 <% provide(:title, @user.name) %>
-<h1>Mock up for consumer behavior</h1>
-<h2><%= @lat_lng %></h2>
-<div class="row" align="center">
-    <%= render "search" %>
-</div>
+<h1>My Place(Stat & Rewards)</h1>
 <div class="row">
   <!--aside class="span4">
     <section>
     <h1>
       <%= gravatar_for @user %>
-      <%= @user.name %> (<%= @like_count %>) likes
+      <%= @user.name %> (<%= @user.liked_by_count %>) likes
     </h1> 
     </section>
   </aside-->
@@ -21,16 +17,7 @@
         <div class="active item"></div>
         <% @places.each_with_index do |place, idx| %>
           <div class="<%= idx == 0 ? 'active item' : 'item' %>">
-              <div class="thumnail">
-                <p><%= link_to place.name, places_path %></p>
-                <% review = place.reviews[-1] %>
-                 <% if review %>
-                    <%= link_to image_tag(review.photo.url(:thumb)), reviews_path(place: place) %>
-                 <% else %>
-                    <img src="http://placehold.it/160x120" alt="">
-                 <% end %>
-                <p><%= link_to 'Post', new_review_path(place_id: place) %></p>
-              </div>
+              <%= render :partial => "/places/place" , :locals => {:place => place} %>
           </div>
         <% end %>
       </div>
@@ -39,21 +26,7 @@
     </div>
   <% end %>
   </div>
-
 </div>
-<div class="row">
-
-</div>
-<div class="row">
-  <div class="span8">
-    <% if @search_places.any? %>
-      <h4><%= params[:search] ? "Searched places(" : "Near by places(" %><%= @search_places.count %>)</h4>
-      <ol class="thumbnails">
-        <%= render @search_places %>
-      </ol>
-      <%= will_paginate @search_places, param_name: "search_page" %>
-    <% end %>
-  </div>
-</div>
-<%= link_to 'Register Place', new_place_path %>
-<div id="map_canvas" style="width:80%; height:80%"></div>
+<h3>
+show available rewards for me here
+</h3>

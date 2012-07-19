@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   acts_as_voter
+  
+  def liked_by_count
+    self.reviews.collect{|r| r.votes.size}.inject{|sum, v| sum + v}
+  end
 
   private
     def create_remember_token

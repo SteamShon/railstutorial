@@ -82,6 +82,7 @@ GEM
     geocoder (1.1.1)
     gherkin (2.11.1)
       json (>= 1.4.6)
+    gmaps4rails (1.5.2)
     growl (1.0.3)
     guard (1.2.1)
       listen (>= 0.4.2)
@@ -227,6 +228,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.4.0)
   faker (= 1.0.1)
   geocoder
+  gmaps4rails
   growl (= 1.0.3)
   guard-rspec (= 0.5.5)
   guard-spork (= 0.3.2)

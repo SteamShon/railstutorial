@@ -1,7 +1,18 @@
 <% provide(:title, 'All places') %>
 <h1>All places</h1>
+<div class="row" align="center">
+    <%= render "search" %>
+</div>
 
-<ul class="places">
-  <%= render @places %>
-</ul>
-<%= will_paginate %>
+<div class="row">
+  <div class="span4">
+    <%= gmaps("markers" => {"data" => @json, 
+      "options" => {"list_container" => "markers_list", "do_clustering" => true }}) %>
+  </div>
+  <div class="span4 offset4">
+    <ul class="places" id="markers_list">
+    </ul>
+    <%= will_paginate @places %>
+  </div>
+</div>
+<%= link_to 'Register Place', new_place_path %>

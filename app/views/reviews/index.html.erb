@@ -8,6 +8,8 @@
         <div class="<%= idx == 0 ? 'active item' : 'item' %>">
           <%= image_tag review.photo.url() %>
           <p><%= review.title %></p>
+          <p><%= link_to 'Like', review, method: :get, remote: true %></p>
+          <p id="<%= "review_" + review.id.to_s %>"><%= review.votes.size %></p>
         </div>
       <% end %>
     </div>

@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  attr_accessible :address, :latitude, :longitude, :name
+  attr_accessible :address, :latitude, :longitude, :name, :created_at, :updated_at
   has_many :reviews
   has_many :users, :through => :reviews
   validates :latitude, presence: true
@@ -12,7 +12,7 @@ class Place < ActiveRecord::Base
   before_validation :geocode, :if => :address_changed?
   reverse_geocoded_by :latitude, :longitude
   before_validation :reverse_geocode
-
+  acts_as_gmappable
   def self.foursquare_venues(lat, lng, query="")
     api_key = "YoonYung-uArHmiat7aAGZIdqMjkEOjwY569"
     api_call = "http://api.infochimps.com/geo/location/foursquare/places/search?"
@@ -33,5 +33,25 @@ class Place < ActiveRecord::Base
       end
     end
     return ret.values
+  end
+  
+  def gmaps4rails_address
+    @address
+  end
+
+  def review_photo(photo_type="thumb")
+    self.reviews[-1].photo.url(photo_type)
+  end
+
+  def self.all_updates
+    Place.all.sort{|a, b| b.reviews[-1].updated_at <=> a.reviews[-1].updated_at}
+  end
+
+  def last_review
+    if self.reviews.any?
+      return self.reviews[-1]
+    else
+      return nil
+    end
   end
 end

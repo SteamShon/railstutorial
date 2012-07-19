@@ -11,6 +11,7 @@ gem "paperclip", "~> 3.0"
 gem 'geocoder'
 gem 'acts_as_votable'
 gem 'omniauth-facebook'
+gem 'gmaps4rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

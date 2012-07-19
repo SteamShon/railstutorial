@@ -12,6 +12,7 @@ gem 'geocoder'
 gem 'acts_as_votable'
 gem 'omniauth-facebook'
 gem 'gmaps4rails'
+gem "rmagick", "2.12.0", :require => 'RMagick'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

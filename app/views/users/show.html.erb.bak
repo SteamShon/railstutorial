@@ -1,0 +1,58 @@
+<% provide(:title, @user.name) %>
+<% content_for :scripts do %>
+
+<% end %>
+<div class="modal hide" id="myModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
+
+
+<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
+    <% if @places.any? %>
+      <% @places.each do |place| %>
+        <%= link_to image_tag(place.review_photo(:thumb)), 
+       "#myModal", {:rel => "gallery", "data-toggle" => "modal"} %>
+      <% end %>
+    <% end %>
+</div>
+<h1>My Place(Stat & Rewards)</h1>
+<div class="row">
+  <!--aside class="span4">
+    <section>
+    <h1>
+      <%= gravatar_for @user %>
+      <%= @user.name %> (<%= @user.liked_by_count %>) likes
+    </h1> 
+    </section>
+  </aside-->
+  <div class="span12">
+  <% if @places.any? %>
+    <h3 align="center">My Places (<%= @places.count %>)</h3>
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner" align="center">
+        <div class="active item"></div>
+        <% @places.each_with_index do |place, idx| %>
+          <div class="<%= idx == 0 ? 'active item' : 'item' %>">
+              <%= render :partial => "/places/place" , :locals => {:place => place} %>
+          </div>
+        <% end %>
+      </div>
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+  <% end %>
+  </div>
+</div>
+<h3>
+show available rewards for me here
+</h3>

@@ -174,10 +174,12 @@ input, textarea, select, .uneditable-input {
   	}		
 }
 
+
 #container{width:860px; margin: 0 auto; }
 .list_item {
-  width: 100px;
-  margin: 5px 5px 5px 5px;
+  width: 200px;
+  height: 200px;
+  margin: 0;
   float: left;
   background-color:#ffffff;
   border:solid 1px #B4BBCD;
@@ -185,5 +187,3 @@ input, textarea, select, .uneditable-input {
   text-align:justify;
   word-wrap:break-word; 
 }
-
-/* custom infowindow */

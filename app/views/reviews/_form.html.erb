@@ -1,8 +1,12 @@
-<%= form_for review, :html => { :multipart => true } do |f| %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :place_id, :value => place_id %>
-  <%= f.label :note %>
-  <%= f.text_field :note %>
-  <%= f.file_field :photo %>
-  <%= f.submit "Posting", class: "btn btn-large btn-primary" %>
+<% if signed_in? %>
+	<%= form_for review, :html => { :multipart => true } do |f| %>
+	  <%= f.hidden_field :user_id, :value => current_user.id %>
+	  <%= f.hidden_field :place_id, :value => place_id %>
+	  <%= f.label :note %>
+	  <%= f.text_field :note %>
+	  <%= f.file_field :photo %>
+	  <%= f.submit "Posting", class: "btn btn-large btn-primary" %>
+	<% end %>
+<% else %>
+	<p>Not signed in? <%= link_to "Sign in now!", signin_path %></p>
 <% end %>

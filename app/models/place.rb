@@ -13,6 +13,11 @@ class Place < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude
   before_validation :reverse_geocode
   acts_as_gmappable
+
+  def gmaps
+    true
+  end
+
   def self.foursquare_venues(lat, lng, query="")
     api_key = "YoonYung-uArHmiat7aAGZIdqMjkEOjwY569"
     api_call = "http://api.infochimps.com/geo/location/foursquare/places/search?"
@@ -21,6 +26,7 @@ class Place < ActiveRecord::Base
     uri = URI.parse(URI.escape(api_call))
     response = Net::HTTP.get_response(uri)
     json = JSON(response.body)
+    puts json
     ret = {}
     json["results"].each do |r|
       cur_name = r["name"].downcase
@@ -41,7 +47,7 @@ class Place < ActiveRecord::Base
 
   def review_photo(photo_type="thumb")
     reviews = self.reviews
-    return reviews.size == 0 ? "http://placehold.it/160x120" : reviews[-1].photo.url(photo_type)
+    return reviews.size == 0 ? "http://placehold.it/100x100" : reviews[-1].photo.url(photo_type)
   end
 
   def self.all_updates

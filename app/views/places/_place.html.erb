@@ -1,25 +1,18 @@
-<div class="thumnail" align="center">
 <% if place.reviews.any? %>
   <div id="myCarousel" class="carousel slide">
     <div class="carousel-inner" align="center">
-      <div class="active item">
-        <ul class="thumbnails">
-          <% for review in place.reviews %>
-            <li class="span2">
-                <div class="thumbnail">
-                  <%= image_tag review.photo.url(:thumb) %>
-                  <p><%= review.note %></p>
-                  <p><%= link_to 'Post', new_review_path(place_id: place) %></p>
-                  <p><%= link_to 'Like', review, method: :get, remote: true %></p>
-                  <p id="<%= "review_" + review.id.to_s %>"><%= review.votes.size %></p>
-                </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      <div class="active item"></div>
+        <% place.reviews.each_with_index do |review, idx| %>
+          <div class="<%= idx == 0 ? "active item" : "item" %>">
+            <h4><%= review.note %> | (<%= idx %> / <%= place.reviews.size %> )</h4>
+            <%= link_to image_tag(review.photo.url), reviews_path(place: place) %>
+            
+            <p><%= link_to 'Like', review, method: :get, remote: true %></p>
+            <p id="<%= "review_" + review.id.to_s %>"><%= review.votes.size %></p>
+          </div>
+        <% end %>
     </div>
     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
   </div>
 <% end %>
-</div>

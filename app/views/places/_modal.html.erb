@@ -1,0 +1,28 @@
+<% content_for :scripts do %>
+
+<% end %>
+<% for place in @places %>
+  <div class="modal hide" id="<%= place.id %>">
+  <div class="modal-header">
+      <a class="close" data-dismiss="modal">&times;</a>
+      <h3 class="modal-title">
+        <%= link_to place.name, reviews_path(place: place) %>
+        <%= link_to "post", '#', :onclick => "$('.modal-form').toggle();" %>
+      </h3>
+      <h4>
+          <div class="modal-form" style="display:none">
+            <%= render partial: "reviews/form", locals: { place_id: place.id, review: Review.new } %>
+          </div>        
+      </h4>
+  </div>  
+  
+  <div class="modal-body">
+    <%= render partial: "place", locals: { place: place } %>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+  </div>
+<% end %>

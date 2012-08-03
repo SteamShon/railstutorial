@@ -1,0 +1,19 @@
+<!-- modal-gallery is the modal dialog used for the image gallery -->
+<div id="modal-gallery" class="modal modal-gallery hide fade" >
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+        <%= link_to "post", '#', :onclick => "$('.modal-form').toggle();" %>
+     
+        <h4>
+            <div class="modal-form" style="display:none">
+            </div>        
+        </h4>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
+</div>

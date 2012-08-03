@@ -1,0 +1,2 @@
+$(".modal-form").html("<%= escape_javascript(render "reviews/new", :locals => {:review => @review }) %>");
+$(".modal-form").toggle();

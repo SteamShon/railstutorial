@@ -173,3 +173,17 @@ input, textarea, select, .uneditable-input {
     	}
   	}		
 }
+
+#container{width:860px; margin: 0 auto; }
+.list_item {
+  width: 100px;
+  margin: 5px 5px 5px 5px;
+  float: left;
+  background-color:#ffffff;
+  border:solid 1px #B4BBCD;
+  min-height:50px;
+  text-align:justify;
+  word-wrap:break-word; 
+}
+
+/* custom infowindow */

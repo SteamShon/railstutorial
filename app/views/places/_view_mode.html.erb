@@ -1,0 +1,4 @@
+<%= form_tag places_path, :method => 'get', :class => "well form-search" do %>
+	<%= select_tag :view_mode, options_for_select(["map", "tile"]) %>
+	<%= submit_tag "change", :name => nil, :class => "btn" %>
+<% end %>

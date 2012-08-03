@@ -40,7 +40,8 @@ class Place < ActiveRecord::Base
   end
 
   def review_photo(photo_type="thumb")
-    self.reviews[-1].photo.url(photo_type)
+    reviews = self.reviews
+    return reviews.size == 0 ? "http://placehold.it/160x120" : reviews[-1].photo.url(photo_type)
   end
 
   def self.all_updates

@@ -1,0 +1,7 @@
+<div id="container">
+	<% for place in @places %>
+		<div class="list_item">
+			<%= link_to image_tag(place.review_photo(:medium)), "##{place.id}", { "data-toggle" => "modal"} %>
+		</div>
+	<% end %>
+</div>

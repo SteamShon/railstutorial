@@ -1,0 +1,8 @@
+<div id="container">
+	<% for place in @places %>
+		<div class="list_item">
+			<%= link_to image_tag(place.review_photo(:thumb)), reviews_path(place: place), 
+			{ remote: true , "data-toggle" => "modal" }%>
+		</div>
+	<% end %>
+</div>

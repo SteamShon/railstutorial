@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="span4">
+    <%= gmaps("markers" => {"data" => json, 
+      "options" => {"list_container" => "markers_list", "do_clustering" => true }}) %>
+  </div>
+  <div class="span4 offset4">
+    <ul class="places" id="markers_list">
+    </ul>
+    <%= will_paginate places %>
+  </div>
+</div>

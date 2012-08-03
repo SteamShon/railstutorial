@@ -11,12 +11,19 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    #@review = Review.new(params[:review])
+    @review = Review.new(params[:review])
     @current_user = current_user
-    #@review = @current_user.reviews.build(params[:review])
-    if @current_user.reviews << Review.new(params[:review])
-      flash[:notice] = "new post has been created."
-      redirect_to current_user
+    if @current_user.reviews << @review
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "new post has been created."
+          redirect_to root_path    
+        }
+        format.js {
+          
+        }
+      end
+      
     else
       render 'new'
     end

@@ -1,3 +1,7 @@
 $(function() {
-  $("#review_<%= @review.id %>").html("<%= @review.votes.count %>");
+  $(".modal-body").html("<%= escape_javascript(render :partial => "places/place", :locals => {:place => @place }) %>");
+  $(".modal-title").html("<%= escape_javascript(link_to @place.name, reviews_path(:place => @place)) %>")
+  $(".modal-form").html("<%= escape_javascript(render :partial => "form", 
+  	:locals => { :place_id => @place.id, :review => Review.new }) %>");
+  $("#modal-gallery").modal();
 })
